@@ -65,6 +65,14 @@ class Nodo<E> {
         return next;
     }
 
+    /**
+     * Compara el nodo actual con otro objeto para determinar si son iguales.
+     * Dos nodos se consideran iguales si tienen el mismo valor en su campo
+     * `data`.
+     *
+     * @param obj Objeto a comparar con el nodo
+     * @return true si los nodos son iguales, false en caso contrario
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -78,6 +86,12 @@ class Nodo<E> {
         return Objects.equals(this.data, other.data);
     }
 
+    /**
+     * Calcula el código hash del nodo. El código hash se calcula utilizando el
+     * código hash del valor de `data`.
+     *
+     * @return Código hash del nodo
+     */
     @Override
     public int hashCode() {
         int hash = 7;

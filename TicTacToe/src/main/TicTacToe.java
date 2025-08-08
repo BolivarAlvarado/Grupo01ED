@@ -31,5 +31,6 @@ public class TicTacToe {
         arbol.add("Nieto 1.1.2","Nieto 1.1");
 
         arbol.imprimir();
+        System.out.println("");
     }
 }

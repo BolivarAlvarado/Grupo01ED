@@ -8,13 +8,13 @@ import estructuras.listas.LinkedList;
 
 /**
  *
- * @author Michelles
+ * @author Michelle
  */
-class Nodo<E> {
+class NodoA<E> {
     private E dato;
-    private LinkedList<Nodo<E>> hijos;
+    private LinkedList<NodoA<E>> hijos;
     
-    public Nodo(E dato) {
+    public NodoA(E dato) {
         this.dato = dato;
         this.hijos = new LinkedList<>();
     }
@@ -27,11 +27,11 @@ class Nodo<E> {
         this.dato = dato;
     }
 
-    public LinkedList<Nodo<E>> getHijos() {
+    public LinkedList<NodoA<E>> getHijos() {
         return hijos;
     }
 
-    public void agregarHijo(Nodo<E> hijo) {
+    public void agregarHijo(NodoA<E> hijo) {
         hijos.addLast(hijo);
     }
 

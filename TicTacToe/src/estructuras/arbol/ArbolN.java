@@ -10,32 +10,32 @@ package estructuras.arbol;
  */
 public class ArbolN<E> {
 
-    private Nodo raiz;
+    private NodoA raiz;
 
     public ArbolN(E datoRaiz) {
-        this.raiz = new Nodo<>(datoRaiz);
+        this.raiz = new NodoA<>(datoRaiz);
     }
 
-    public Nodo<E> getRaiz() {
+    public NodoA<E> getRaiz() {
         return raiz;
     }
 
     public boolean add(E child, E parent) {
-        Nodo<E> nodoPadre = buscarNodo(raiz, parent);
+        NodoA<E> nodoPadre = buscarNodo(raiz, parent);
         if (nodoPadre != null) {
-            nodoPadre.agregarHijo(new Nodo<>(child));
+            nodoPadre.agregarHijo(new NodoA<>(child));
             return true;
         }
         return false; // No se encontró el nodo padre
     }
 
-    private Nodo<E> buscarNodo(Nodo<E> actual, E valor) {
+    private NodoA<E> buscarNodo(NodoA<E> actual, E valor) {
         if (actual.getDato().equals(valor)) {
             return actual;
         }
 
-        for (Nodo<E> hijo : actual.getHijos()) {
-            Nodo<E> resultado = buscarNodo(hijo, valor);
+        for (NodoA<E> hijo : actual.getHijos()) {
+            NodoA<E> resultado = buscarNodo(hijo, valor);
             if (resultado != null) {
                 return resultado;
             }
@@ -48,13 +48,13 @@ public class ArbolN<E> {
         imprimirRecursivo(raiz, 0);
     }
 
-    private void imprimirRecursivo(Nodo<E> nodo, int nivel) {
+    private void imprimirRecursivo(NodoA<E> nodo, int nivel) {
         for (int i = 0; i < nivel; i++) {
             System.out.print("  ");
         }
         System.out.println(nodo.getDato());
 
-        for (Nodo<E> hijo : nodo.getHijos()) {
+        for (NodoA<E> hijo : nodo.getHijos()) {
             imprimirRecursivo(hijo, nivel + 1);
         }
     }
