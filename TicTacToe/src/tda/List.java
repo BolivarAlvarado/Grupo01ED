@@ -5,13 +5,10 @@
 package tda;
 
 /**
- *
- * @author Michelle
- */
-/**
  * Interfaz que define una lista genérica con operaciones básicas de inserción,
  * eliminación, acceso y verificación.
  *
+ * @author Michelle
  * @param <E> el tipo de elementos que se almacenarán en la lista
  */
 public interface List<E> {
