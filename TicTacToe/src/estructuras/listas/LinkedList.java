@@ -4,6 +4,7 @@
  */
 package estructuras.listas;
 
+import java.util.Iterator;
 import java.util.Objects;
 import tda.List;
 
@@ -14,7 +15,7 @@ import tda.List;
  * @author Michelle
  * @param <E> Tipo de dato que almacena la lista
  */
-public class LinkedList<E> implements List<E> {
+public class LinkedList<E> implements List<E>, Iterable<E> {
 
     private Nodo<E> first;   // Primer nodo de la lista
     private Nodo<E> last;    // Último nodo de la lista
@@ -360,7 +361,7 @@ public class LinkedList<E> implements List<E> {
     }
 
     /**
-     * Verifica si otra lista es igual a esta (mismos elementos en orden).
+     * Verifica si otra lista es igual a esta (mismos elementos).
      *
      * @param o la otra lista a comparar
      * @return true si son iguales
@@ -395,5 +396,26 @@ public class LinkedList<E> implements List<E> {
         hash = 97 * hash + Objects.hashCode(this.first);
         hash = 97 * hash + this.efectivo;
         return hash;
+    }
+
+   @Override
+    public Iterator<E> iterator() {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<E> {
+        private Nodo<E> current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            E data = current.getData();
+            current = current.getNext();
+            return data;
+        }
     }
 }
