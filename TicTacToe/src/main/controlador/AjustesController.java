@@ -8,7 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
 /**
@@ -19,17 +19,17 @@ import javafx.scene.control.ToggleGroup;
 public class AjustesController implements Initializable {
 
     @FXML
-    private RadioButton btnX;
+    private ToggleButton btnX;
     @FXML
-    private ToggleGroup tgSimbolo;
+    private ToggleButton btnO;
     @FXML
-    private RadioButton btnO;
+    private ToggleButton btnJugador1;
     @FXML
-    private RadioButton btnJugador1;
+    private ToggleButton btnJugador2;
     @FXML
-    private ToggleGroup tgInicio;
+    private ToggleGroup tglJugador;
     @FXML
-    private RadioButton btnJugador2;
+    private ToggleGroup tglSimbolo;
 
     /**
      * Initializes the controller class.
