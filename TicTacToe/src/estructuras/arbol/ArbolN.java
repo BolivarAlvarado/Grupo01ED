@@ -5,10 +5,10 @@
 package estructuras.arbol;
 
 /**
- * @author Michelle 
- * 
- * Clase que representa un árbol con nodos que pueden tener
- * varios hijos. Cada nodo está representado por la clase NodoA.
+ * @author Michelle
+ *
+ * Clase que representa un árbol con nodos que pueden tener varios hijos. Cada
+ * nodo está representado por la clase NodoA.
  *
  * @param <E> Tipo de dato almacenado en los nodos del árbol.
  */
@@ -41,7 +41,8 @@ public class ArbolN<E> {
      *
      * @param child Dato que se almacenará en el nodo hijo.
      * @param parent Dato del nodo padre al que se agregará el hijo.
-     * @return true si el hijo fue agregado correctamente, false si el nodo padre no fue encontrado.
+     * @return true si el hijo fue agregado correctamente, false si el nodo
+     * padre no fue encontrado.
      */
     public boolean add(E child, E parent) {
         NodoA<E> nodoPadre = buscarNodo(raiz, parent);  // Busca el nodo padre en el árbol
