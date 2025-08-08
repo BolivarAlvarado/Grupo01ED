@@ -50,7 +50,7 @@ public class LinkedList<E> implements List<E> {
     }
 
     @Override
-    public boolean addlast(E element) {
+    public boolean addLast(E element) {
         if (element == null) {
             return false;
         }
@@ -219,7 +219,7 @@ public class LinkedList<E> implements List<E> {
         }
 
         if (index == efectivo) {
-            return addlast(element);
+            return addLast(element);
         }
 
         Nodo<E> nuevo = new Nodo<>(element);
