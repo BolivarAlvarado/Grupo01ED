@@ -5,7 +5,6 @@
 package estructuras.arbol;
 
 import estructuras.listas.ArrayList;
-import estructuras.listas.LinkedList;
 
 /**
  * Clase que representa un nodo en un árbol, donde cada nodo puede tener varios

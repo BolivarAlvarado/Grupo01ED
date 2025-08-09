@@ -23,10 +23,10 @@
    <center>
       <VBox alignment="CENTER" prefHeight="397.0" prefWidth="293.0" spacing="10.0" styleClass="vbox-background" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnJvsJ" mnemonicParsing="false" styleClass="menu-button" text="Jugador vs Jugador" />
+            <Button fx:id="btnJvsJ" mnemonicParsing="false" onAction="#irJugarVsJugador" styleClass="menu-button" text="Jugador vs Jugador" />
             <Button fx:id="btnJvsP" mnemonicParsing="false" styleClass="menu-button" text="Jugador vs PC" />
             <Button fx:id="btnPvsP" mnemonicParsing="false" styleClass="menu-button" text="PC vs PC" />
-            <Button fx:id="btnAjustes" mnemonicParsing="false" styleClass="menu-button" text="Ajustes" />
+            <Button fx:id="btnAjustes" mnemonicParsing="false" onAction="#irAjustess" styleClass="menu-button" text="Ajustes" />
          </children>
          <padding>
             <Insets top="15.0" />
