@@ -4,6 +4,7 @@
  */
 package estructuras.arbol;
 
+import estructuras.listas.ArrayList;
 import estructuras.listas.LinkedList;
 
 /**
@@ -16,7 +17,7 @@ import estructuras.listas.LinkedList;
 class NodoA<E> {
 
     private E dato;  // Dato almacenado en el nodo
-    private LinkedList<NodoA<E>> hijos;  // Lista de hijos del nodo
+    private ArrayList<NodoA<E>> hijos;  // Lista de hijos del nodo
 
     /**
      * Constructor para crear un nodo con un dato específico.
@@ -25,7 +26,7 @@ class NodoA<E> {
      */
     public NodoA(E dato) {
         this.dato = dato;
-        this.hijos = new LinkedList<>();  // Inicializa la lista de hijos como vacía
+        this.hijos = new ArrayList<>();  // Inicializa la lista de hijos como vacía
     }
 
     /**
@@ -51,7 +52,7 @@ class NodoA<E> {
      *
      * @return Lista de hijos del nodo.
      */
-    public LinkedList<NodoA<E>> getHijos() {
+    public ArrayList<NodoA<E>> getHijos() {
         return hijos;
     }
 
