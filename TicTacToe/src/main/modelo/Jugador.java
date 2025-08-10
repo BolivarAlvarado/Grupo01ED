@@ -7,16 +7,26 @@ public class Jugador {
 
     private char caracter;
     private String nickname;
-
+    private boolean esPc;
+    
     //Constructor
     public Jugador(char caracter) {
         this.caracter = caracter;
         this.nickname = "Jugador";
+        esPc = false;
     }
 
     public Jugador(String nickname, char caracter) {
-        this.caracter = caracter;
+        this(caracter);
         this.nickname = nickname;
+    }
+
+    public boolean isEsPc() {
+        return esPc;
+    }
+
+    public void setEsPc(boolean esPc) {
+        this.esPc = esPc;
     }
 
     public String getNickname() {

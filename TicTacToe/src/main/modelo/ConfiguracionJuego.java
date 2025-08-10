@@ -16,6 +16,7 @@ public class ConfiguracionJuego {
     private Jugador jugador2;
 
     private int turnoInicial;
+    
 
     private ConfiguracionJuego() {
         turnoInicial = 1;
