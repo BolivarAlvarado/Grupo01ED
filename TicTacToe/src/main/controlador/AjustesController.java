@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import main.modelo.ConfiguracionJuego;
 import main.modelo.Jugador;
@@ -39,6 +40,10 @@ public class AjustesController implements Initializable {
     private RadioButton X2;
     @FXML
     private RadioButton O2;
+    @FXML
+    private TextField txtJugador1;
+    @FXML
+    private TextField txtJugador2;
 
     private ConfiguracionJuego config;
     private Jugador j1;
@@ -75,10 +80,13 @@ public class AjustesController implements Initializable {
             O1.setSelected(true);
             X2.setSelected(true);
         }
+        this.txtJugador2.setDisable(j2.isEsPc());
+        this.txtJugador1.setDisable(j1.isEsPc());
     }
 
     @FXML
     private void regresar(ActionEvent event) {
+        actualizarConfiguracion();
         abrirVentana("Principal", event);
     }
 
@@ -96,6 +104,10 @@ public class AjustesController implements Initializable {
     }
 
     private void actualizarConfiguracion() {
+        if(txtJugador1.getText().isBlank()) j1.setNickname("Jugador 1");
+        if(txtJugador2.getText().isBlank()) j1.setNickname("Jugador 2");
+        j1.setNickname(this.txtJugador1.getText());
+        j2.setNickname(this.txtJugador2.getText());
         config.setJugador1(j1);
         config.setJugador2(j2);
     }
@@ -121,7 +133,12 @@ public class AjustesController implements Initializable {
             j1.setCaracter('X');
             X1.setSelected(true);
         }
-
         actualizarConfiguracion();
+    }
+
+    @FXML
+    private void avanzar(ActionEvent event) {
+        actualizarConfiguracion();
+        abrirVentana("Juego", event);
     }
 }

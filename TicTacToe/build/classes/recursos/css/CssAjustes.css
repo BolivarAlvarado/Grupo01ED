@@ -16,7 +16,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-family: "Arial";
     -fx-text-fill: white;
 }
-
+.bottom{
+     -fx-text-fill:  #00bcd4;
+     -fx-font-family: "Arial";
+     -fx-font-weight: bold;
+}
 .titulo {
     -fx-background-color: #000000;
     -fx-padding: 10;
@@ -41,6 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-size: 15px;
     -fx-text-fill: white;
     -fx-alignment: center;
+    -fx-font-weight: bold;
 }
 
 /* Toggle general */
@@ -54,6 +59,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-padding: 6 14;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 5, 0.5, 0, 0);
     -fx-cursor: hand;
+    -fx-border-width: 2;
 }
 
 /* Botón activado */
@@ -141,6 +147,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-padding: 6 14;
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 5, 0.5, 0, 0);
+    -fx-border-width: 2;
 }
 
 /* RadioButton seleccionado */
@@ -168,4 +175,57 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 /* Presionado */
 .radio-button:pressed {
     -fx-background-color: #222;
+}
+
+.centralVBox {
+    -fx-background-image: url("../../recursos/img/Tic-tac-toe.png");
+    -fx-background-repeat: repeat; 
+    -fx-background-size: 50px 50px;
+    -fx-background-position: center;
+}
+
+/* Estilo base del TextField */
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #888;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-padding: 8 14;
+    -fx-cursor: text;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 5, 0.5, 0, 0);
+    -fx-border-width: 2;
+}
+
+/* TextField con foco */
+.text-field:focused {
+    -fx-border-color: #00bcd4;
+    -fx-background-color: rgba(0, 188, 212, 0.1);
+    -fx-effect: dropshadow(gaussian, #00bcd4, 10, 0.5, 0, 0);
+}
+
+/* TextField con texto vacío */
+.text-field:empty {
+    -fx-text-fill: #888;  /* color más claro para texto */
+}
+
+/* Hover (cuando el ratón está encima) */
+.text-field:hover {
+    -fx-border-color: #00bcd4;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 5, 0.5, 0, 0);
+}
+
+/* TextField deshabilitado */
+.text-field:disabled {
+    -fx-background-color: #333;
+    -fx-border-color: #555;
+    -fx-text-fill: #888;
+}
+
+/* TextField presionado */
+.text-field:pressed {
+    -fx-background-color: #444;
+    -fx-border-color: #00bcd4;
 }

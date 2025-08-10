@@ -10,6 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import main.modelo.ConfiguracionJuego;
 import main.modelo.Jugador;
 import static util.VentanaUtil.abrirVentana;
@@ -19,15 +21,15 @@ import static util.VentanaUtil.abrirVentana;
  *
  * @author Michelle
  */
-public class PrincipalController implements Initializable {
+public class JuegoController implements Initializable {
 
     @FXML
-    private Button btnJvsJ;
+    private Button btnRegresar;
     @FXML
-    private Button btnJvsP;
+    private Label lblTiempo;
     @FXML
-    private Button btnPvsP;
-    
+    private Label lblJugador;
+
     private ConfiguracionJuego config;
     private Jugador j1;
     private Jugador j2;
@@ -44,27 +46,8 @@ public class PrincipalController implements Initializable {
     }
 
     @FXML
-    private void jugarVsJugador(ActionEvent event) {
+    private void regresar(ActionEvent event) {
         abrirVentana("Ajustes", event);
     }
 
-    @FXML
-    private void jugarVsPC(ActionEvent event) {
-        this.j2.setNickname("PC");
-        this.j2.setEsPc(true);
-        this.config.setJugador2(j2);
-        abrirVentana("Ajustes", event);
-    }
-
-    @FXML
-    private void jugarPCvsPC(ActionEvent event) {
-        this.j2.setNickname("PC 2");
-        this.j2.setEsPc(true);
-        this.config.setJugador2(j2);
-        
-        this.j1.setNickname("PC 1");
-        this.j1.setEsPc(true);
-        this.config.setJugador2(j1);
-        abrirVentana("Ajustes", event);
-    }
 }
