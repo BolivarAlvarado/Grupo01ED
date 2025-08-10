@@ -102,24 +102,26 @@ public class AjustesController implements Initializable {
 
     @FXML
     private void actualizarSimbolo(ActionEvent event) {
-        if (X1.isSelected()) {
+        Object source = event.getSource();
+
+        if (source == X1) {
             j1.setCaracter('X');
             j2.setCaracter('O');
             O2.setSelected(true);
-        } else {
-            j2.setCaracter('X');
+        } else if (source == O1) {
             j1.setCaracter('O');
+            j2.setCaracter('X');
             X2.setSelected(true);
-        }
-        if (X2.isSelected()) {
+        } else if (source == X2) {
             j2.setCaracter('X');
             j1.setCaracter('O');
             O1.setSelected(true);
-        } else {
-            j1.setCaracter('X');
+        } else if (source == O2) {
             j2.setCaracter('O');
+            j1.setCaracter('X');
             X1.setSelected(true);
         }
+
         actualizarConfiguracion();
     }
 }
