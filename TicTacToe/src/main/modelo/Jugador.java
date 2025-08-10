@@ -86,5 +86,10 @@ public class Jugador {
         }
         return Objects.equals(this.nickname, other.nickname);
     }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "Nickname=" + nickname + ", caracter=" + caracter +  '}';
+    }
     
 }

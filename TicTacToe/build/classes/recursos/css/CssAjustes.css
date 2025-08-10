@@ -64,6 +64,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.5, 0, 0);
 }
 
+.toggle-button:disabled {
+    -fx-background-color: linear-gradient(#00bcd4, #0097a7);
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.5, 0, 0);
+    -fx-opacity: 1;
+}
+
 .toggle-button:hover {
     -fx-border-color: #00bcd4;
 }
@@ -71,24 +79,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 /* Presionado */
 .toggle-button:pressed {
     -fx-background-color: #222;
-}
-/* Toggle estilo símbolo (X/O) */
-.symbol-button {
-    -fx-background-color: #333;
-    -fx-text-fill: white;
-    -fx-font-size: 12px;
-    -fx-padding: 10;
-    -fx-background-radius: 30;
-    -fx-border-radius: 30;
-    -fx-border-color: #777;
-    -fx-border-width: 2;
-}
-
-.symbol-button:selected {
-    -fx-background-color: #00bcd4;
-    -fx-text-fill: black;
-    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.6, 0, 0);
-    -fx-border-color: transparent;
 }
 
 /* Números de puntaje */
@@ -138,4 +128,44 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: black;
     -fx-border-color: transparent;
     -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.6, 0, 0);
+}
+
+/* Estilo base del RadioButton */
+.radio-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #888;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 5, 0.5, 0, 0);
+}
+
+/* RadioButton seleccionado */
+.radio-button:selected {
+    -fx-background-color: linear-gradient(#00bcd4, #0097a7);
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.5, 0, 0);
+}
+
+/* RadioButton deshabilitado (sin apariencia gris) */
+.radio-button:disabled {
+    -fx-background-color: linear-gradient(#00bcd4, #0097a7);
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-opacity: 1; /* evita que se vea apagado */
+    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.5, 0, 0);
+}
+
+/* Hover */
+.radio-button:hover {
+    -fx-border-color: #00bcd4;
+}
+
+/* Presionado */
+.radio-button:pressed {
+    -fx-background-color: #222;
 }

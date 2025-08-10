@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -39,12 +39,8 @@
                         <Label text="¿Quien empieza?" textFill="WHITE" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <ToggleButton fx:id="btnJugador1" mnemonicParsing="false" selected="true" text="Jugador 1">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="tglJugador" />
-                                 </toggleGroup>
-                              </ToggleButton>
-                              <ToggleButton fx:id="btnJugador2" mnemonicParsing="false" text="Jugador 2" toggleGroup="$tglJugador" />
+                              <Button fx:id="btnJugador1" mnemonicParsing="false" onAction="#cambiarJugador" styleClass="toggle-button" text="Jugador 1" />
+                              <Button fx:id="btnJugador2" mnemonicParsing="false" onAction="#cambiarJugador" styleClass="toggle-button" text="Jugador 2" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" />
@@ -62,17 +58,31 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                      <children>
                         <Label text="Jugador 1 es:" />
-                        <ToggleButton fx:id="btnX" mnemonicParsing="false" selected="true" text="X">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="tglSimbolo" />
-                           </toggleGroup>
-                        </ToggleButton>
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <RadioButton fx:id="X1" mnemonicParsing="false" onAction="#actualizarSimbolo" text="X">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tglSimbolo1" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="O1" mnemonicParsing="false" onAction="#actualizarSimbolo" text="O" toggleGroup="$tglSimbolo1" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                      <children>
                         <Label text="Jugador 2 es:" />
-                        <ToggleButton fx:id="btnO" mnemonicParsing="false" text="O" toggleGroup="$tglSimbolo" />
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <RadioButton fx:id="X2" mnemonicParsing="false" onAction="#actualizarSimbolo" text="X">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tglSimbolo2" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="O2" mnemonicParsing="false" onAction="#actualizarSimbolo" text="O" toggleGroup="$tglSimbolo2" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

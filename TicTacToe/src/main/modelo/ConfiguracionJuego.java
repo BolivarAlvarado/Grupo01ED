@@ -15,7 +15,12 @@ public class ConfiguracionJuego {
     private Jugador jugador1;
     private Jugador jugador2;
 
+    private int turnoInicial;
+
     private ConfiguracionJuego() {
+        turnoInicial = 1;
+        jugador1 = new Jugador("Jugador 1", 'X');
+        jugador2 = new Jugador("Jugador 2", 'O');
     }
 
     public static ConfiguracionJuego getInstancia() {
@@ -39,5 +44,13 @@ public class ConfiguracionJuego {
 
     public void setJugador2(Jugador jugador2) {
         this.jugador2 = jugador2;
+    }
+
+    public int getTurnoInicial() {
+        return turnoInicial;
+    }
+
+    public void setTurnoInicial(int turnoInicial) {
+        this.turnoInicial = turnoInicial;
     }
 }
