@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="315.0" prefWidth="424.0" stylesheets="@../../recursos/css/CssAjustes.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controlador.AjustesController">
+   <top>
+      <StackPane BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#regresar" styleClass="back-button" text="←" StackPane.alignment="CENTER_LEFT" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="90.0" text="Ajustes">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#avanzar" styleClass="back-button" text="→" StackPane.alignment="CENTER_RIGHT" />
+         </children>
+         <styleClass>
+            <String fx:value="menu-title" />
+            <String fx:value="titulo" />
+         </styleClass>
+      </StackPane>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="424.0" spacing="20.0" styleClass="bottom-border">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="150.0" spacing="5.0">
+                     <children>
+                        <Label text="Jugador 1:" />
+                        <TextField fx:id="txtJugador1" prefHeight="36.0" prefWidth="121.0" promptText="Jugador 1" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="150.0" spacing="5.0">
+                     <children>
+                        <Label text="Jugador 2:" />
+                        <TextField fx:id="txtJugador2" prefHeight="36.0" prefWidth="121.0" promptText="Jugador 2" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="59.0" prefWidth="337.0" spacing="10.0" styleClass="bottom-border">
+                     <children>
+                        <Label text="¿Quien empieza?" textFill="WHITE" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="btnJugador1" mnemonicParsing="false" onAction="#cambiarJugador" styleClass="toggle-button" text="Jugador 1" />
+                              <Button fx:id="btnJugador2" mnemonicParsing="false" onAction="#cambiarJugador" styleClass="toggle-button" text="Jugador 2" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="73.0" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Jugador 1 es:" />
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <RadioButton fx:id="X1" mnemonicParsing="false" onAction="#actualizarSimbolo" text="X">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tglSimbolo1" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="O1" mnemonicParsing="false" onAction="#actualizarSimbolo" text="O" toggleGroup="$tglSimbolo1" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label fx:id="lblJugado2" text="Jugador 2 es:" />
+                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <RadioButton fx:id="X2" mnemonicParsing="false" onAction="#actualizarSimbolo" text="X">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tglSimbolo2" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="O2" mnemonicParsing="false" onAction="#actualizarSimbolo" text="O" toggleGroup="$tglSimbolo2" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+         <styleClass>
+            <String fx:value="title-label" />
+            <String fx:value="centralVBox" />
+         </styleClass>
+      </VBox>
+   </center>
+</BorderPane>

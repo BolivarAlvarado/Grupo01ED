@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.App;
 import main.modelo.ConfiguracionJuego;
@@ -45,6 +46,8 @@ public class JuegoController implements Initializable {
     private Tablero tablero;
     private Button[][] btnCeldas;
     private boolean hayGanador;
+    @FXML
+    private StackPane stackTablero;
 
     /**
      * Initializes the controller class.
@@ -67,10 +70,11 @@ public class JuegoController implements Initializable {
 
     @FXML
     private void regresar(ActionEvent event) {
-        if(hayGanador || this.tablero.estaLleno()){ 
-           abrirVentana("Principal", event); 
-        }else 
+        if (hayGanador || this.tablero.estaLleno()) {
+            abrirVentana("Principal", event);
+        } else {
             abrirVentana("Ajustes", event);
+        }
     }
 
     private void configTablero() {
@@ -144,15 +148,19 @@ public class JuegoController implements Initializable {
 
     private void validarJuego(int fila, int columna, Jugador j) {
         tablero.colocarMarca(fila, columna, j.getCaracter());
-        hayGanador = tablero.revisarTablero();
+        int[][] casillasGanadoras = tablero.revisarTablero();
+        hayGanador = casillasGanadoras != null;
         this.gridTablero.setDisable(hayGanador);
-        if (hayGanador) {            
-            if(j1.isJugando())
-               mostrarMensaje(j1,j2,false);
-            else if(j2.isJugando())
-                mostrarMensaje(j2,j1,false);
-        }else if(tablero.estaLleno()){ 
-            mostrarMensaje(j1,j2,true);
+        if (hayGanador) {
+            resaltarLineaGanadora(casillasGanadoras);
+
+            if (j1.isJugando()) {
+                mostrarMensaje(j1, j2, false);
+            } else if (j2.isJugando()) {
+                mostrarMensaje(j2, j1, false);
+            }
+        } else if (tablero.estaLleno()) {
+            mostrarMensaje(j1, j2, true);
         }
     }
 
@@ -174,5 +182,37 @@ public class JuegoController implements Initializable {
 
     @FXML
     private void reiniciarPartida(ActionEvent event) {
+        
+    }
+
+    private void resaltarLineaGanadora(int[][] casillasGanadoras) {        
+        javafx.scene.shape.Line linea = new javafx.scene.shape.Line();
+
+        
+        double gridWidth = gridTablero.getWidth();
+        double gridHeight = gridTablero.getHeight();
+        
+        double cellWidth = gridWidth / Tablero.SIZE;
+        double cellHeight = gridHeight / Tablero.SIZE;
+   
+        int fila1 = casillasGanadoras[0][0];
+        int col1 = casillasGanadoras[0][1];
+        int fila2 = casillasGanadoras[casillasGanadoras.length - 1][0];
+        int col2 = casillasGanadoras[casillasGanadoras.length - 1][1];
+       
+        double x1 = col1 * cellWidth + gridTablero.getLayoutX();
+        double y1 = fila1 * cellHeight + gridTablero.getLayoutY();
+        double x2 = col2 * cellWidth + gridTablero.getLayoutX();
+        double y2 = fila2 * cellHeight + gridTablero.getLayoutY();
+
+        linea.setStartX(x1);
+        linea.setStartY(y1);
+        linea.setEndX(x2);
+        linea.setEndY(y2);
+        
+        linea.setStrokeWidth(5);
+        linea.setStroke(javafx.scene.paint.Color.RED); 
+
+        this.stackTablero.getChildren().add(linea);
     }
 }

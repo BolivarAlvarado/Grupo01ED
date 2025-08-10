@@ -59,31 +59,31 @@ public class Tablero {
         return true;
     }
 
-    public boolean revisarTablero() {
+    public int[][] revisarTablero() {
         // Revisar filas
         for (int i = 0; i < SIZE; i++) {
-            if (tablero[i][0] != ' ' && tablero[i][0] == tablero[i][1] 
-                    && tablero[i][1] == tablero[i][2]) {
-                return true;
+            if (tablero[i][0] != ' ' && tablero[i][0] == tablero[i][1] && tablero[i][1] == tablero[i][2]) {
+                return new int[][]{{i, 0}, {i, 1}, {i, 2}};
             }
         }
 
         // Revisar columnas
         for (int j = 0; j < SIZE; j++) {
-            if (tablero[0][j] != ' ' && tablero[0][j] == tablero[1][j] 
-                    && tablero[1][j] == tablero[2][j]) {
-                return true;
+            if (tablero[0][j] != ' ' && tablero[0][j] == tablero[1][j] && tablero[1][j] == tablero[2][j]) {
+                return new int[][]{{0, j}, {1, j}, {2, j}}; 
             }
         }
 
         // Revisar diagonales
-        if (tablero[0][0] != ' ' && tablero[0][0] == tablero[1][1] 
-                && tablero[1][1] == tablero[2][2]) {
-            return true;
+        if (tablero[0][0] != ' ' && tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2]) {
+            return new int[][]{{0, 0}, {1, 1}, {2, 2}}; 
         }
 
-        return tablero[0][2] != ' ' && tablero[0][2] == tablero[1][1] 
-                && tablero[1][1] == tablero[2][0];
+        if (tablero[0][2] != ' ' && tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0]) {
+            return new int[][]{{0, 2}, {1, 1}, {2, 0}};
+        }
+
+        return null; 
     }
 
     public void reiniciar() {

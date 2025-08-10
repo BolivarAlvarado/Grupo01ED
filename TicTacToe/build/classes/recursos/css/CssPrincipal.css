@@ -1,0 +1,61 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 8 ago 2025, 3:14:11 a. m.
+    Author     : Michelle
+*/
+/* Fondo del BorderPane principal */
+
+@font-face {
+    font-family: 'HandTypeWriter';
+    src: url("../fuentes/HandTypeWriter.ttf");
+}
+
+.root {
+    -fx-background-size: 50% auto; /* Ajusta el % según el tamaño deseado */
+    -fx-background-image: url("../../recursos/img/Tic-tac-toe.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80% 65%; /* Fuerza a ocupar todo el área del root */
+    -fx-background-position: center 75%;
+    -fx-background-color:  #29282D;
+    -fx-font-family: "Arial";
+}
+
+.titulo {
+    -fx-background-color: #000000;
+    -fx-padding: 10;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: linear-gradient(to right, transparent 0%, #00bcd4 50%, transparent 100%);
+}
+
+.menu-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-family: "Arial";
+}
+
+/* Estilo personalizado para los botones del menú */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.2), 5, 0, 0, 2);
+    -fx-alignment: center;
+    -fx-pref-width: 200px;
+}
+
+.menu-button:hover {
+    -fx-border-color: #00bcd4;
+    -fx-text-fill: #00bcd4;
+}
