@@ -7,6 +7,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Michelle
 */
 /* Fondo del BorderPane principal */
+
+@font-face {
+    font-family: 'HandTypeWriter';
+    src: url("../fuentes/HandTypeWriter.ttf");
+}
+
 .root {
     -fx-background-size: 50% auto; /* Ajusta el % según el tamaño deseado */
     -fx-background-image: url("../../recursos/img/Tic-tac-toe.png");
@@ -14,6 +20,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-size: 80% 65%; /* Fuerza a ocupar todo el área del root */
     -fx-background-position: center 75%;
     -fx-background-color:  #29282D;
+    -fx-font-family: "Arial";
 }
 
 .titulo {

@@ -6,14 +6,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 8 ago 2025, 4:40:02 a. m.
     Author     : Michelle
 */
+@font-face {
+    font-family: 'HandTypeWriter';
+    src: url("../../recursos/fuentes/HandTypeWriter.ttf");
+}
+
 .root {
-    -fx-background-color: #1a1a1a;
-    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #29282D;
+    -fx-font-family: "Arial";
     -fx-text-fill: white;
 }
 
 .titulo {
-    -fx-background-color: #29282D;
+    -fx-background-color: #000000;
     -fx-padding: 10;
     -fx-border-width: 0 0 2 0;
     -fx-border-color: linear-gradient(to right, transparent 0%, #00bcd4 50%, transparent 100%);
@@ -21,19 +26,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .menu-title {
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-alignment: center;
-    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-alignment: center;    
 }
 /* Texto general */
 .label {
     -fx-text-fill: white;
+    -fx-font-family: "Arial";
 }
 
 /* Título principal */
 .title-label {
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-text-fill: white;
     -fx-alignment: center;
 }

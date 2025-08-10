@@ -32,6 +32,10 @@ public class Jugador {
         return caracter;
     }
 
+    public void setCaracter(char caracter) {
+        this.caracter = caracter;
+    }
+
     //Mediante un while siempre verdadero que hasta que no escoja o X o O, avisara que es invalido y pedira que se lo ingrese de nuevo
     public static char elegirCaracter(Scanner sc) {
         while (true) {

@@ -16,7 +16,7 @@
    <top>
       <StackPane BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" styleClass="back-button" text="←" StackPane.alignment="CENTER_LEFT" />
+            <Button mnemonicParsing="false" onAction="#regresar" styleClass="back-button" text="←" StackPane.alignment="CENTER_LEFT" />
             <Label alignment="CENTER" prefHeight="28.0" prefWidth="90.0" text="Ajustes">
                <font>
                   <Font size="24.0" />
