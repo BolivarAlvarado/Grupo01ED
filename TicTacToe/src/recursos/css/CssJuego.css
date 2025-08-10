@@ -19,3 +19,184 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-repeat: no-repeat;
     -fx-padding: 0;
 }
+
+.cell-button:hover {
+    -fx-border-color: #00bcd4;
+}
+
+/* Estilo base para el MenuButton */
+.menu-button {
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 5 14;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: #555;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.3, 0, 1);
+    -fx-alignment: center;
+}
+
+/* Flecha del MenuButton */
+.menu-button .arrow {
+    -fx-background-color: white;
+}
+
+/* Hover */
+.menu-button:hover {
+    -fx-background-color: #444;
+    -fx-border-color: #00bcd4;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 10, 0.5, 0, 0);
+}
+
+/* Botón presionado */
+.menu-button:pressed {
+    -fx-background-color: linear-gradient(#00bcd4, #0097a7);
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.6, 0, 0);
+}
+
+/* Texto en MenuButton */
+.menu-button .text {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-size: 13px;
+    -fx-padding: 8 18;
+}
+
+/* Items del menú */
+.menu-button .menu-item {
+    -fx-text-fill: black;
+    -fx-font-size: 13px;
+    -fx-font-family: "Arial";
+    -fx-padding: 8 18;
+}
+
+.menu-button .menu-item:hover {
+    -fx-background-color: #444;
+    -fx-text-fill: white;
+}
+
+.menu-item > .label {
+    -fx-text-fill: black;
+}
+
+/* Mensaje de victoria */
+.win-message {
+    -fx-background-color: #1e2a1e;
+    -fx-text-fill: #a8e6a1;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 20;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-border-color: #00bcd4;
+    -fx-border-width: 3;
+}
+
+/* Botón de mensaje */
+.win-message-button {
+    -fx-background-color: #00bcd4;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.5, 0, 0);
+}
+
+.win-message-button:hover {
+    -fx-background-color: linear-gradient(#00cfff, #0097a7);
+}
+
+/* Mensaje de derrota */
+.lose-message {
+    -fx-background-color: #2d1e1e;
+    -fx-text-fill: #e6a1a1;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 20;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-border-color: #00bcd4;
+    -fx-border-width: 3;
+}
+
+/* Ventana de empate */
+.empate-window {
+    -fx-background-color: #283744; 
+    -fx-text-fill: #f0f0f0; /* texto claro */
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 20;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-border-color: #f39c12; /* un naranja brillante */
+    -fx-border-width: 3;
+    -fx-effect: dropshadow(gaussian, rgba(243,156,18,0.7), 10, 0.5, 0, 0);
+}
+
+/* Título empate */
+.empate-title {
+    -fx-text-fill: #f39c12; /* mismo naranja para título */
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+/* Texto secundario empate */
+.empate-text {
+    -fx-text-fill: #ddd; /* gris claro */
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-padding: 10 0 0 0;
+}
+
+/* Botón empate */
+.empate-button {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #f39c12, 15, 0.5, 0, 0);
+}
+
+.empate-button:hover {
+    -fx-background-color: linear-gradient(#f5b041, #d68910);
+}
+
+.close-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #888; /* gris medio */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 12;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-effect: none;
+    -fx-alignment: center;
+    -fx-min-width: 80px;
+    -fx-min-height: 30px;
+    -fx-max-width: 80px;
+    -fx-max-height: 30px;
+}
+
+.close-button:hover {
+    -fx-background-color: #00bcd4;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 10, 0.3, 0, 0);
+}

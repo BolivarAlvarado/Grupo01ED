@@ -8,7 +8,10 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import main.App;
 import main.controlador.PrincipalController;
@@ -18,6 +21,7 @@ import main.controlador.PrincipalController;
  * @author Michelle
  */
 public class VentanaUtil {
+
     public static void abrirVentana(String nombre, ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("vista/" + nombre + ".fxml"));
         Scene scene;
@@ -37,4 +41,22 @@ public class VentanaUtil {
         }
     }
 
+    public static boolean mostrarAlertaConfirmacion(String titulo, String mensaje) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText("Confirmar");
+        alert.setContentText(mensaje);
+
+        ButtonType resultado = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        return resultado == ButtonType.OK;
+    }
+
+    public static void mostrarAlertaInformacion(String titulo, String mensaje) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText("Informacion");
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 }

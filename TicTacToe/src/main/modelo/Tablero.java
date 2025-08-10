@@ -59,35 +59,31 @@ public class Tablero {
         return true;
     }
 
-    public boolean revisarTablero(String[][] tablero) {
+    public boolean revisarTablero() {
         // Revisar filas
         for (int i = 0; i < SIZE; i++) {
-            if (tablero[i][0] != null && !tablero[i][0].isEmpty()
-                    && tablero[i][0].equals(tablero[i][1])
-                    && tablero[i][1].equals(tablero[i][2])) {
+            if (tablero[i][0] != ' ' && tablero[i][0] == tablero[i][1] 
+                    && tablero[i][1] == tablero[i][2]) {
                 return true;
             }
         }
 
         // Revisar columnas
         for (int j = 0; j < SIZE; j++) {
-            if (tablero[0][j] != null && !tablero[0][j].isEmpty()
-                    && tablero[0][j].equals(tablero[1][j])
-                    && tablero[1][j].equals(tablero[2][j])) {
+            if (tablero[0][j] != ' ' && tablero[0][j] == tablero[1][j] 
+                    && tablero[1][j] == tablero[2][j]) {
                 return true;
             }
         }
 
         // Revisar diagonales
-        if (tablero[0][0] != null && !tablero[0][0].isEmpty()
-                && tablero[0][0].equals(tablero[1][1])
-                && tablero[1][1].equals(tablero[2][2])) {
+        if (tablero[0][0] != ' ' && tablero[0][0] == tablero[1][1] 
+                && tablero[1][1] == tablero[2][2]) {
             return true;
         }
 
-        return tablero[0][2] != null && !tablero[0][2].isEmpty()
-                && tablero[0][2].equals(tablero[1][1])
-                && tablero[1][1].equals(tablero[2][0]);
+        return tablero[0][2] != ' ' && tablero[0][2] == tablero[1][1] 
+                && tablero[1][1] == tablero[2][0];
     }
 
     public void reiniciar() {
