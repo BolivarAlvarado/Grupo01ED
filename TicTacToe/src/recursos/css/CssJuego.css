@@ -11,3 +11,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-family: "Arial";
 }
 
+.cell-button {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 0;
+}
