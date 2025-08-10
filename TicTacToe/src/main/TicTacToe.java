@@ -1,7 +1,7 @@
 package main;
 
 import estructuras.arbol.ArbolN;
-import main.Modelo.Juego;
+import main.modelo.Juego;
 
 public class TicTacToe {
 

@@ -1,4 +1,4 @@
-package main.Modelo;
+package main.modelo;
 
 public class Tablero {
     //Declaramos una variable estatica y final porque el tablero sera de 3x3

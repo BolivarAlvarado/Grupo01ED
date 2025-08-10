@@ -21,20 +21,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .menu-title {
     -fx-text-fill: white;
-    -fx-font-size: 23px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-alignment: center;
-    -fx-font-family: "Arial";
+    -fx-font-family: 'Segoe UI', sans-serif;
 }
 /* Texto general */
 .label {
-    -fx-font-size: 14px;
     -fx-text-fill: white;
 }
 
 /* Título principal */
 .title-label {
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
     -fx-text-fill: white;
     -fx-alignment: center;
 }
@@ -46,8 +45,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-radius: 30;
     -fx-background-radius: 30;
     -fx-text-fill: white;
-    -fx-font-size: 13px;
-    -fx-padding: 8 16;
+    -fx-font-size: 12px;
+    -fx-padding: 6 14;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 5, 0.5, 0, 0);
     -fx-cursor: hand;
 }
@@ -60,14 +59,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.5, 0, 0);
 }
 
+.toggle-button:hover {
+    -fx-border-color: #00bcd4;
+}
+
+/* Presionado */
+.toggle-button:pressed {
+    -fx-background-color: #222;
+}
 /* Toggle estilo símbolo (X/O) */
 .symbol-button {
     -fx-background-color: #333;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-padding: 10;
-    -fx-background-radius: 40;
-    -fx-border-radius: 40;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
     -fx-border-color: #777;
     -fx-border-width: 2;
 }
@@ -97,4 +104,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-color: transparent transparent #444 transparent;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 0 0 10 0;
+}
+
+.back-button {
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 20;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: #555;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.3, 0, 1);
+    -fx-alignment: center;
+}
+
+/* Hover (ratón encima) */
+.back-button:hover {
+    -fx-background-color: #444;
+    -fx-border-color: #00bcd4;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 10, 0.5, 0, 0);
+}
+
+/* Botón presionado */
+.back-button:pressed {
+    -fx-background-color: linear-gradient(#00bcd4, #0097a7);
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, #00bcd4, 15, 0.6, 0, 0);
 }

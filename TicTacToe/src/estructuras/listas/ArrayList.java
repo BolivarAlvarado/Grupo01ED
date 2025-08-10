@@ -4,6 +4,7 @@
  */
 package estructuras.listas;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import tda.List;
 
@@ -332,6 +333,14 @@ public class ArrayList<E> implements List<E>, Iterable<E> {
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + Arrays.deepHashCode(this.array);
+        hash = 79 * hash + this.efectivo;
+        return hash;
     }
 
     /**

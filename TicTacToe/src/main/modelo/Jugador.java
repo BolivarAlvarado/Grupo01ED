@@ -1,14 +1,30 @@
-package main.Modelo;
+package main.modelo;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Jugador {
 
     private char caracter;
+    private String nickname;
 
     //Constructor
     public Jugador(char caracter) {
         this.caracter = caracter;
+        this.nickname = "Jugador";
+    }
+
+    public Jugador(String nickname, char caracter) {
+        this.caracter = caracter;
+        this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     //Getter
@@ -40,5 +56,31 @@ public class Jugador {
             else System.out.println("Movimiento invalido. Posicion ocupada o fuera de rango.");
         }
     }
-}
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.caracter;
+        hash = 83 * hash + Objects.hashCode(this.nickname);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Jugador other = (Jugador) obj;
+        if (this.caracter != other.caracter) {
+            return false;
+        }
+        return Objects.equals(this.nickname, other.nickname);
+    }
+    
+}
