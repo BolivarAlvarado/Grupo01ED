@@ -8,12 +8,14 @@ public class Jugador {
     private char caracter;
     private String nickname;
     private boolean esPc;
+    private boolean jugando;
     
     //Constructor
     public Jugador(char caracter) {
         this.caracter = caracter;
         this.nickname = "Jugador";
         esPc = false;
+        this.jugando = false;        
     }
 
     public Jugador(String nickname, char caracter) {
@@ -44,6 +46,14 @@ public class Jugador {
 
     public void setCaracter(char caracter) {
         this.caracter = caracter;
+    }
+
+    public boolean isJugando() {
+        return jugando;
+    }
+
+    public void setJugando(boolean jugando) {
+        this.jugando = jugando;
     }
 
     //Mediante un while siempre verdadero que hasta que no escoja o X o O, avisara que es invalido y pedira que se lo ingrese de nuevo

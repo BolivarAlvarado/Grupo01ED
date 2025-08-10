@@ -6,10 +6,12 @@ package main.controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -48,6 +50,8 @@ public class AjustesController implements Initializable {
     private ConfiguracionJuego config;
     private Jugador j1;
     private Jugador j2;
+    @FXML
+    private Label lblJugado2;
 
     /**
      * Initializes the controller class.
@@ -66,9 +70,13 @@ public class AjustesController implements Initializable {
         if (config.getTurnoInicial() == 1) {
             btnJugador1.setDisable(true);
             btnJugador2.setDisable(false);
+            this.j1.setJugando(true);
+            this.j2.setJugando(false);
         } else {
             btnJugador1.setDisable(false);
             btnJugador2.setDisable(true);
+            this.j1.setJugando(false);
+            this.j2.setJugando(true);
         }
         System.out.println(config.getJugador1());
 
@@ -82,6 +90,9 @@ public class AjustesController implements Initializable {
         }
         this.txtJugador2.setDisable(j2.isEsPc());
         this.txtJugador1.setDisable(j1.isEsPc());
+        Platform.runLater(() -> {
+            txtJugador1.requestFocus();
+        });
     }
 
     @FXML
@@ -96,18 +107,29 @@ public class AjustesController implements Initializable {
             config.setTurnoInicial(1);
             btnJugador1.setDisable(true);
             btnJugador2.setDisable(false);
+            this.j1.setJugando(true);
+            this.j2.setJugando(false);
         } else {
             config.setTurnoInicial(2);
             btnJugador1.setDisable(false);
             btnJugador2.setDisable(true);
+            this.j2.setJugando(true);
+            this.j1.setJugando(false);
         }
     }
 
     private void actualizarConfiguracion() {
-        if(txtJugador1.getText().isBlank()) j1.setNickname("Jugador 1");
-        if(txtJugador2.getText().isBlank()) j1.setNickname("Jugador 2");
-        j1.setNickname(this.txtJugador1.getText());
-        j2.setNickname(this.txtJugador2.getText());
+        if (txtJugador1.getText().isBlank()) {
+            j1.setNickname("Jugador 1");
+        } else {
+            j1.setNickname(this.txtJugador1.getText());
+
+        }
+        if (txtJugador2.getText().isBlank()) {
+            j2.setNickname("Jugador 2");
+        } else {
+            j2.setNickname(this.txtJugador2.getText());
+        }
         config.setJugador1(j1);
         config.setJugador2(j2);
     }
