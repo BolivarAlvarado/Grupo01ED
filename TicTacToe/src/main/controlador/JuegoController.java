@@ -12,8 +12,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import main.modelo.ConfiguracionJuego;
 import main.modelo.Jugador;
+import main.modelo.Tablero;
 import static util.VentanaUtil.abrirVentana;
 
 /**
@@ -29,10 +31,15 @@ public class JuegoController implements Initializable {
     private Label lblTiempo;
     @FXML
     private Label lblJugador;
+    @FXML
+    private GridPane gridTablero;
+
+    private Button[][] btnCeldas;
 
     private ConfiguracionJuego config;
     private Jugador j1;
     private Jugador j2;
+    private Tablero tablero;
 
     /**
      * Initializes the controller class.
@@ -43,6 +50,13 @@ public class JuegoController implements Initializable {
         config = ConfiguracionJuego.getInstancia();
         j1 = config.getJugador1();
         j2 = config.getJugador2();
+        tablero = new Tablero();
+        cargarConfiguraciones();
+    }
+
+    private void cargarConfiguraciones() {
+        actualizarLablelJugador();
+        configTablero();
     }
 
     @FXML
@@ -50,4 +64,56 @@ public class JuegoController implements Initializable {
         abrirVentana("Ajustes", event);
     }
 
+    private Button[][] botones;
+
+    private void configTablero() {
+        botones = new Button[Tablero.SIZE][Tablero.SIZE];
+        for (int fila = 0; fila < Tablero.SIZE; fila++) {
+            for (int col = 0; col < Tablero.SIZE; col++) {
+                Button celda = new Button();
+                botones[fila][col] = celda;
+                int f = fila, c = col;
+                gridTablero.add(celda, col, fila);
+                celda.setOnAction(e -> manejarClickCelda(f, c));
+            }
+        }
+    }
+
+    private Button obtenerBotonPorCoordenadas(int fila, int columna) {
+        return botones[fila][columna];
+    }
+
+    private void manejarClickCelda(int fila, int columna) {
+        Button boton = obtenerBotonPorCoordenadas(fila, columna);
+        if (boton.getText().isEmpty()) {
+            if (j1.isJugando()) {
+                boton.setText("X");
+                cambiarTurno();
+            } else {
+                boton.setText("O");
+                cambiarTurno();
+            }
+            boton.setDisable(true);
+        }
+    }
+
+    private void cambiarTurno() {
+        if (j1.isJugando()) {
+            j1.setJugando(false);
+            j2.setJugando(true);
+            actualizarLablelJugador();
+        } else {
+            j2.setJugando(false);
+            j1.setJugando(true);
+            actualizarLablelJugador();
+        }
+    }
+
+    private void actualizarLablelJugador() {
+        if (j1.isJugando()) {
+            lblJugador.setText(j1.getNickname() + "(" + j1.getCaracter() + ")");
+        } else {
+            lblJugador.setText(j2.getNickname() + "(" + j2.getCaracter() + ")");
+        }
+    }
 }

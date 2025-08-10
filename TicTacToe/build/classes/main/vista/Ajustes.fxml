@@ -93,7 +93,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                      <children>
-                        <Label text="Jugador 2 es:" />
+                        <Label fx:id="lblJugado2" text="Jugador 2 es:" />
                         <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="100.0" spacing="5.0">
                            <children>
                               <RadioButton fx:id="X2" mnemonicParsing="false" onAction="#actualizarSimbolo" text="X">
