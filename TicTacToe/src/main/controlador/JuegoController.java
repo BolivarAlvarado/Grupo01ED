@@ -11,17 +11,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import main.App;
 import main.modelo.ConfiguracionJuego;
 import main.modelo.Jugador;
 import main.modelo.Tablero;
+import util.VentanaUtil;
 import static util.VentanaUtil.abrirVentana;
 
 /**
@@ -39,6 +44,8 @@ public class JuegoController implements Initializable {
     private Label lblJugador;
     @FXML
     private GridPane gridTablero;
+    @FXML
+    private StackPane stackTablero;
 
     private ConfiguracionJuego config;
     private Jugador j1;
@@ -46,8 +53,7 @@ public class JuegoController implements Initializable {
     private Tablero tablero;
     private Button[][] btnCeldas;
     private boolean hayGanador;
-    @FXML
-    private StackPane stackTablero;
+    private Pane panelLinea;
 
     /**
      * Initializes the controller class.
@@ -64,6 +70,14 @@ public class JuegoController implements Initializable {
         j2 = config.getJugador2();
         tablero = new Tablero();
         this.hayGanador = false;
+        if (config.getTurnoInicial() == 1) {
+            this.j1.setJugando(true);
+            this.j2.setJugando(false);
+        } else {
+            this.j1.setJugando(false);
+            this.j2.setJugando(true);
+        }
+        limpiarLineas();
         actualizarLablelJugador();
         configTablero();
     }
@@ -78,6 +92,8 @@ public class JuegoController implements Initializable {
     }
 
     private void configTablero() {
+        this.gridTablero.setDisable(false);
+        this.gridTablero.getChildren().clear();
         btnCeldas = new Button[Tablero.SIZE][Tablero.SIZE];
         for (int fila = 0; fila < Tablero.SIZE; fila++) {
             for (int col = 0; col < Tablero.SIZE; col++) {
@@ -182,37 +198,61 @@ public class JuegoController implements Initializable {
 
     @FXML
     private void reiniciarPartida(ActionEvent event) {
-        
+        if (!this.tablero.estaLleno() || !this.hayGanador) {
+            boolean conf = VentanaUtil.mostrarAlertaConfirmacion("Esta seguro de reiniciar la partida?", "Al reiniciar la partida no se guardaran los cambios");
+            if (conf) {
+                cargarConfiguraciones();
+            } else {
+                VentanaUtil.mostrarAlertaInformacion("No se reinicio la partida", "Puede seguir jugando");
+            }
+        }
+        if (this.hayGanador) {
+            cargarConfiguraciones();
+        }
     }
 
-    private void resaltarLineaGanadora(int[][] casillasGanadoras) {        
-        javafx.scene.shape.Line linea = new javafx.scene.shape.Line();
+    private void resaltarLineaGanadora(int[][] casillasGanadoras) {
+        if (panelLinea != null) {
+            stackTablero.getChildren().remove(panelLinea);
+        }
 
-        
+        Line lineaGanadora = new Line();
+
         double gridWidth = gridTablero.getWidth();
         double gridHeight = gridTablero.getHeight();
-        
+
         double cellWidth = gridWidth / Tablero.SIZE;
         double cellHeight = gridHeight / Tablero.SIZE;
-   
+
+        // Coordenadas de las casillas ganadoras
         int fila1 = casillasGanadoras[0][0];
         int col1 = casillasGanadoras[0][1];
         int fila2 = casillasGanadoras[casillasGanadoras.length - 1][0];
         int col2 = casillasGanadoras[casillasGanadoras.length - 1][1];
-       
-        double x1 = col1 * cellWidth + gridTablero.getLayoutX();
-        double y1 = fila1 * cellHeight + gridTablero.getLayoutY();
-        double x2 = col2 * cellWidth + gridTablero.getLayoutX();
-        double y2 = fila2 * cellHeight + gridTablero.getLayoutY();
 
-        linea.setStartX(x1);
-        linea.setStartY(y1);
-        linea.setEndX(x2);
-        linea.setEndY(y2);
-        
-        linea.setStrokeWidth(5);
-        linea.setStroke(javafx.scene.paint.Color.RED); 
+        // Calculando las posiciones correctas para la línea
+        double x1 = col1 * cellWidth + (cellWidth / 2);
+        double y1 = fila1 * cellHeight + (cellHeight / 2);
+        double x2 = col2 * cellWidth + (cellWidth / 2);
+        double y2 = fila2 * cellHeight + (cellHeight / 2);
 
-        this.stackTablero.getChildren().add(linea);
+        lineaGanadora.setStartX(x1);
+        lineaGanadora.setStartY(y1);
+        lineaGanadora.setEndX(x2);
+        lineaGanadora.setEndY(y2);
+
+        lineaGanadora.setStrokeWidth(5);
+        lineaGanadora.setStroke(javafx.scene.paint.Color.RED);
+
+        panelLinea = new Pane();
+        panelLinea.getChildren().add(lineaGanadora);
+        stackTablero.getChildren().add(panelLinea);
+    }
+
+    private void limpiarLineas() {
+        if (panelLinea != null) {
+            stackTablero.getChildren().remove(panelLinea);
+            panelLinea = null;
+        }
     }
 }

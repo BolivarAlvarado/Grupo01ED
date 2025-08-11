@@ -108,13 +108,13 @@ public class AjustesController implements Initializable {
             btnJugador1.setDisable(true);
             btnJugador2.setDisable(false);
             this.j1.setJugando(true);
-            this.j2.setJugando(false);
+            this.j2.setJugando(false);           
         } else {
             config.setTurnoInicial(2);
             btnJugador1.setDisable(false);
             btnJugador2.setDisable(true);
             this.j2.setJugando(true);
-            this.j1.setJugando(false);
+            this.j1.setJugando(false);            
         }
     }
 
