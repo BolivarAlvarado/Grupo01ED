@@ -198,7 +198,7 @@ public class JuegoController implements Initializable {
 
     @FXML
     private void reiniciarPartida(ActionEvent event) {
-        if (!this.tablero.estaLleno() || !this.hayGanador) {
+        if (!this.tablero.estaLleno() && !this.hayGanador) {
             boolean conf = VentanaUtil.mostrarAlertaConfirmacion("Esta seguro de reiniciar la partida?", "Al reiniciar la partida no se guardaran los cambios");
             if (conf) {
                 cargarConfiguraciones();
