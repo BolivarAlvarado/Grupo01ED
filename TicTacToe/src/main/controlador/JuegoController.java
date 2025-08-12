@@ -31,7 +31,7 @@ import main.modelo.Jugador;
 import main.modelo.Tablero;
 import util.VentanaUtil;
 import static util.VentanaUtil.abrirVentana;
-
+import main.modelo.Minimax;
 /**
  * FXML Controller class
  *
@@ -59,7 +59,8 @@ public class JuegoController implements Initializable {
     private Pane panelLinea;
     private ScheduledExecutorService scheduler;
     private int segundosTranscurridos;
-
+    private Minimax minimaxIA;
+    
     /**
      * Initializes the controller class.
      */
@@ -89,6 +90,15 @@ public class JuegoController implements Initializable {
         } else {
             this.j1.setJugando(false);
             this.j2.setJugando(true);
+        }
+            if (j2.isEsPc()) {
+            minimaxIA = new Minimax(j2.getCaracter(), j1.getCaracter());
+        } else {
+            minimaxIA = null;
+        }
+        // Si inicia PC, hacer que juegue ya
+        if (j2.isEsPc() && j2.isJugando()) {
+            jugarTurnoPCConRetraso();
         }
         limpiarLineas();
         actualizarLablelJugador();
@@ -135,43 +145,72 @@ public class JuegoController implements Initializable {
     private void jugar(int fila, int columna) {
         Button boton = obtenerBotonPorCoordenadas(fila, columna);
 
-        if (boton.getGraphic() == null) {
-            String imagen;
-            if (j1.isJugando()) {
-                validarJuego(fila, columna, j1);
-                imagen = "recursos/img/" + j1.getCaracter() + ".png";
-                cambiarTurno();
-            } else {
-                validarJuego(fila, columna, j2);
-                imagen = "recursos/img/" + j2.getCaracter() + ".png";
-                cambiarTurno();
-            }
+        if (boton.getGraphic() == null && !hayGanador && tablero.getCasilla(fila, columna) == ' ') {
+            Jugador jugadorActual = j1.isJugando() ? j1 : j2;
+            validarJuego(fila, columna, jugadorActual);
 
+            String imagen = "recursos/img/" + jugadorActual.getCaracter() + ".png";
             boton.setStyle(
-                    "-fx-background-image: url('" + imagen + "');"
-                    + "-fx-background-size: cover;"
-                    + "-fx-background-position: center;"
-                    + "-fx-background-repeat: no-repeat;"
-                    + "-fx-background-size: 80% 80%;"
+                "-fx-background-image: url('" + imagen + "');" +
+                "-fx-background-size: cover;" +
+                "-fx-background-position: center;" +
+                "-fx-background-repeat: no-repeat;" +
+                "-fx-background-size: 80% 80%;"
             );
-
             boton.setDisable(true);
+
+            if (!hayGanador && !tablero.estaLleno()) {
+                if (jugadorActual == j1) {
+                    cambiarTurno();
+                    if (j2.isEsPc() && j2.isJugando()) {
+                        jugarTurnoPCConRetraso();
+                    }
+                } else {
+                    cambiarTurno();
+                }
+            }
         }
     }
 
     private void cambiarTurno() {
-        if (!tablero.estaLleno() && !this.hayGanador) {
+        if (!tablero.estaLleno() && !hayGanador) {
             if (j1.isJugando()) {
                 j1.setJugando(false);
                 j2.setJugando(true);
-                actualizarLablelJugador();
             } else {
                 j2.setJugando(false);
                 j1.setJugando(true);
-                actualizarLablelJugador();
             }
+            actualizarLablelJugador();
+        }
+    }
+    
+    private void jugarTurnoPCConRetraso() {
+        gridTablero.setDisable(true);
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        executor.schedule(() -> {
+            Platform.runLater(() -> {
+                jugarTurnoPC();
+                executor.shutdown();
+            });
+        }, 500, TimeUnit.MILLISECONDS);
+    }
+
+    private void jugarTurnoPC() {
+        if (minimaxIA == null || hayGanador || tablero.estaLleno()) return;
+
+        int[] movimiento = minimaxIA.mejorMovimiento(tablero);
+        int fila = movimiento[0];
+        int columna = movimiento[1];
+
+        if (fila >= 0 && columna >= 0) {
+            jugar(fila, columna);
         }
 
+        // Habilitar el tablero si el juego sigue
+        if (!hayGanador && !tablero.estaLleno()) {
+            gridTablero.setDisable(false);
+        }
     }
 
     private void actualizarLablelJugador() {

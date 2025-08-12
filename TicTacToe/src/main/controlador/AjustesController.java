@@ -58,15 +58,11 @@ public class AjustesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        config = ConfiguracionJuego.getInstancia();
-        j1 = config.getJugador1();
-        j2 = config.getJugador2();
-        configInicial();
+        resetUI();
     }
 
     private void configInicial() {
-        // Configuración de quién inicia
+        // Configuración inicial de turnos
         if (config.getTurnoInicial() == 1) {
             btnJugador1.setDisable(true);
             btnJugador2.setDisable(false);
@@ -78,9 +74,8 @@ public class AjustesController implements Initializable {
             this.j1.setJugando(false);
             this.j2.setJugando(true);
         }
-        System.out.println(config.getJugador1());
 
-        // Configuración de símbolos según jugador 1
+        // Configuración símbolos
         if (j1.getCaracter() == 'X') {
             X1.setSelected(true);
             O2.setSelected(true);
@@ -88,12 +83,39 @@ public class AjustesController implements Initializable {
             O1.setSelected(true);
             X2.setSelected(true);
         }
-        this.txtJugador2.setDisable(j2.isEsPc());
-        this.txtJugador1.setDisable(j1.isEsPc());
-        Platform.runLater(() -> {
-            txtJugador1.requestFocus();
-        });
+
+        // Si es PC, bloqueo el campo y pongo el nombre automáticamente
+        if (j2.isEsPc()) {
+            txtJugador2.setText("PC");
+            txtJugador2.setDisable(true);
+        }
+        if (j1.isEsPc()) {
+            txtJugador1.setText("PC");
+            txtJugador1.setDisable(true);
+        }
+
+        Platform.runLater(() -> txtJugador1.requestFocus());
     }
+
+    private void actualizarConfiguracion() {
+        // Jugador 1
+        if (txtJugador1.getText().isBlank()) {
+            j1.setNickname(j1.isEsPc() ? "PC" : "Jugador 1");
+        } else {
+            j1.setNickname(txtJugador1.getText());
+        }
+
+        // Jugador 2
+        if (txtJugador2.getText().isBlank()) {
+            j2.setNickname(j2.isEsPc() ? "PC" : "Jugador 2");
+        } else {
+            j2.setNickname(txtJugador2.getText());
+        }
+
+        config.setJugador1(j1);
+        config.setJugador2(j2);
+    }
+
 
     @FXML
     private void regresar(ActionEvent event) {
@@ -117,22 +139,21 @@ public class AjustesController implements Initializable {
             this.j1.setJugando(false);            
         }
     }
+    
+    public void resetUI() {
+        config = ConfiguracionJuego.getInstancia();
+        j1 = config.getJugador1();
+        j2 = config.getJugador2();
 
-    private void actualizarConfiguracion() {
-        if (txtJugador1.getText().isBlank()) {
-            j1.setNickname("Jugador 1");
-        } else {
-            j1.setNickname(this.txtJugador1.getText());
+        btnJugador1.setDisable(false);
+        btnJugador2.setDisable(false);
+        txtJugador1.setDisable(false);
+        txtJugador2.setDisable(false);
 
-        }
-        if (txtJugador2.getText().isBlank()) {
-            j2.setNickname("Jugador 2");
-        } else {
-            j2.setNickname(this.txtJugador2.getText());
-        }
-        config.setJugador1(j1);
-        config.setJugador2(j2);
+        configInicial();
     }
+
+
 
     @FXML
     private void actualizarSimbolo(ActionEvent event) {

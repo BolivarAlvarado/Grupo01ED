@@ -45,16 +45,20 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void jugarVsJugador(ActionEvent event) {
+        this.j2.setEsPc(false);            // Resetear a jugador normal
+        this.j2.setNickname("Jugador 2");  // Nombre estándar
+        this.config.setJugador2(j2);
         abrirVentana("Ajustes", event);
     }
 
     @FXML
     private void jugarVsPC(ActionEvent event) {
-        this.j2.setNickname("PC");
         this.j2.setEsPc(true);
+        this.j2.setNickname("PC");
         this.config.setJugador2(j2);
         abrirVentana("Ajustes", event);
     }
+
 
     @FXML
     private void jugarPCvsPC(ActionEvent event) {

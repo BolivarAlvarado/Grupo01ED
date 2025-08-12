@@ -2,22 +2,18 @@ package main.modelo;
 
 public class Tablero {
 
-    //Declaramos una variable estatica y final porque el tablero sera de 3x3
     public static final int SIZE = 3;
     private char[][] tablero;
 
-    //inicializamos el tablero con el tamano 3x3 y se llama a inicializarTablero para llenarlo de espacios
     public Tablero() {
         tablero = new char[SIZE][SIZE];
         inicializarTablero();
     }
 
-    //getter
     public char[][] getTablero() {
         return tablero;
     }
 
-    //Recorre los 3x3 espacios y los deja en blanco para llenarlos de las respuestas del usuario
     private void inicializarTablero() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -26,7 +22,6 @@ public class Tablero {
         }
     }
 
-    //Metodo para mostrar por consola un diseño para el tablero y que muestra el contenido de cada celda
     public void mostrarTablero() {
         System.out.println("-------------");
         for (int i = 0; i < SIZE; i++) {
@@ -39,13 +34,17 @@ public class Tablero {
         }
     }
 
-    //Metodo que se utilizara en otras clases para verificar que la posicion ingresada por el usuario es valida y no esta ocupada para cambiarla por la ingresada
     public boolean colocarMarca(int fila, int columna, char marca) {
         if (fila >= 0 && fila < SIZE && columna >= 0 && columna < SIZE && tablero[fila][columna] == ' ') {
             tablero[fila][columna] = marca;
             return true;
         }
         return false;
+    }
+
+    // Coloca marca sin validar (usado por minimax para probar movimientos)
+    public void colocarMarcaForzada(int fila, int columna, char marca) {
+        tablero[fila][columna] = marca;
     }
 
     public boolean estaLleno() {
@@ -70,23 +69,42 @@ public class Tablero {
         // Revisar columnas
         for (int j = 0; j < SIZE; j++) {
             if (tablero[0][j] != ' ' && tablero[0][j] == tablero[1][j] && tablero[1][j] == tablero[2][j]) {
-                return new int[][]{{0, j}, {1, j}, {2, j}}; 
+                return new int[][]{{0, j}, {1, j}, {2, j}};
             }
         }
 
         // Revisar diagonales
         if (tablero[0][0] != ' ' && tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2]) {
-            return new int[][]{{0, 0}, {1, 1}, {2, 2}}; 
+            return new int[][]{{0, 0}, {1, 1}, {2, 2}};
         }
 
         if (tablero[0][2] != ' ' && tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0]) {
             return new int[][]{{0, 2}, {1, 1}, {2, 0}};
         }
 
-        return null; 
+        return null;
     }
 
     public void reiniciar() {
         inicializarTablero();
     }
+
+    // --- NUEVOS MÉTODOS PARA MINIMAX ---
+    public char getCasilla(int fila, int columna) {
+        return tablero[fila][columna];
+    }
+
+    public boolean haGanado(char marca) {
+        // Revisar filas y columnas
+        for (int i = 0; i < SIZE; i++) {
+            if (tablero[i][0] == marca && tablero[i][1] == marca && tablero[i][2] == marca) return true;
+            if (tablero[0][i] == marca && tablero[1][i] == marca && tablero[2][i] == marca) return true;
+        }
+        // Revisar diagonales
+        if (tablero[0][0] == marca && tablero[1][1] == marca && tablero[2][2] == marca) return true;
+        if (tablero[0][2] == marca && tablero[1][1] == marca && tablero[2][0] == marca) return true;
+
+        return false;
+    }
 }
+
