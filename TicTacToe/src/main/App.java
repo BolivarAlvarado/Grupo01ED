@@ -19,7 +19,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {       
         scene = new Scene(loadFXML("vista/Principal"), 295, 460);
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(false);        
         stage.show();
     }
 
@@ -35,5 +35,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

@@ -7,11 +7,14 @@ package main.controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -54,6 +57,8 @@ public class JuegoController implements Initializable {
     private Button[][] btnCeldas;
     private boolean hayGanador;
     private Pane panelLinea;
+    private ScheduledExecutorService scheduler;
+    private int segundosTranscurridos;
 
     /**
      * Initializes the controller class.
@@ -62,9 +67,17 @@ public class JuegoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO        
         cargarConfiguraciones();
+        Platform.runLater(() -> {
+            Stage stage = (Stage) gridTablero.getScene().getWindow();
+            stage.setOnCloseRequest(event -> {
+                stop();
+            });
+        });
     }
 
     private void cargarConfiguraciones() {
+        stop();
+        empezarCronometro();
         config = ConfiguracionJuego.getInstancia();
         j1 = config.getJugador1();
         j2 = config.getJugador2();
@@ -88,6 +101,13 @@ public class JuegoController implements Initializable {
             abrirVentana("Principal", event);
         } else {
             abrirVentana("Ajustes", event);
+        }
+        stop();
+    }
+
+    private void stop() {
+        if (scheduler != null) {
+            scheduler.shutdownNow();
         }
     }
 
@@ -189,6 +209,11 @@ public class JuegoController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Resultado");
+            stage.setOnCloseRequest(event -> {
+                if (gridTablero.getScene() == null || gridTablero.getScene().getWindow() == null || !gridTablero.getScene().getWindow().isShowing()) {
+                    stop();
+                }
+            });
             stage.show();
 
         } catch (IOException e) {
@@ -242,7 +267,7 @@ public class JuegoController implements Initializable {
         lineaGanadora.setEndY(y2);
 
         lineaGanadora.setStrokeWidth(5);
-        lineaGanadora.setStroke(javafx.scene.paint.Color.RED);
+        lineaGanadora.setStroke(Color.RED);
 
         panelLinea = new Pane();
         panelLinea.getChildren().add(lineaGanadora);
@@ -254,5 +279,31 @@ public class JuegoController implements Initializable {
             stackTablero.getChildren().remove(panelLinea);
             panelLinea = null;
         }
+    }
+
+    private void empezarCronometro() {
+        if (scheduler != null) {
+            scheduler.shutdownNow();
+        }
+        segundosTranscurridos = 0;
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(() -> {
+            if (!hayGanador && !tablero.estaLleno()) {
+                segundosTranscurridos++;
+                long segundos = segundosTranscurridos % 60;
+                long minutos = (segundosTranscurridos / 60) % 60;
+                long horas = (segundosTranscurridos / 3600) % 24;
+                long dias = segundosTranscurridos / (3600 * 24);
+                String tiempoFormateado;
+                if (dias > 0) {
+                    tiempoFormateado = String.format("%dd %02d:%02d:%02d", dias, horas, minutos, segundos);
+                } else {
+                    tiempoFormateado = String.format("%02d:%02d:%02d", horas, minutos, segundos);
+                }
+                Platform.runLater(() -> lblTiempo.setText(tiempoFormateado));
+            } else {
+                scheduler.shutdown();
+            }
+        }, 0, 1, TimeUnit.SECONDS);
     }
 }

@@ -3,7 +3,7 @@ package main.modelo;
 import java.util.Scanner;
 
 public class Juego {
-
+    
     //Metodo principal que inicializa el juego
     public void comenzarJuego() {
         Scanner sc = new Scanner(System.in);
@@ -57,8 +57,6 @@ public class Juego {
 
         // Verificar diagonales
         if (tablero[0][0] == jugador && tablero[1][1] == jugador && tablero[2][2] == jugador) return true;
-        if (tablero[0][2] == jugador && tablero[1][1] == jugador && tablero[2][0] == jugador) return true;
-
-        return false;
+        return tablero[0][2] == jugador && tablero[1][1] == jugador && tablero[2][0] == jugador;
     }
 }
