@@ -262,16 +262,32 @@ public class JuegoController implements Initializable {
 
     @FXML
     private void reiniciarPartida(ActionEvent event) {
-        if (!this.tablero.estaLleno() && !this.hayGanador) {
-            boolean conf = VentanaUtil.mostrarAlertaConfirmacion("Esta seguro de reiniciar la partida?", "Al reiniciar la partida no se guardaran los cambios");
+    if (!this.tablero.estaLleno() && !this.hayGanador) {
+        // En medio de la partida
+        boolean conf = VentanaUtil.mostrarAlertaConfirmacion(
+            "¿Está seguro de reiniciar la partida?",
+            "Al reiniciar la partida no se guardarán los cambios"
+        );
+        if (conf) {
+            cargarConfiguraciones();
+        } else {
+            VentanaUtil.mostrarAlertaInformacion(
+                "No se reinició la partida",
+                "Puede seguir jugando"
+            );
+        }
+        } else if (this.hayGanador) {
+            // Cuando hay un ganador
+            cargarConfiguraciones();
+        } else if (this.tablero.estaLleno() && !this.hayGanador) {
+            // Caso de empate
+            boolean conf = VentanaUtil.mostrarAlertaConfirmacion(
+                "Partida en empate",
+                "¿Desea reiniciar la partida?"
+            );
             if (conf) {
                 cargarConfiguraciones();
-            } else {
-                VentanaUtil.mostrarAlertaInformacion("No se reinicio la partida", "Puede seguir jugando");
             }
-        }
-        if (this.hayGanador) {
-            cargarConfiguraciones();
         }
     }
 
