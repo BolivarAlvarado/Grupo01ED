@@ -1,8 +1,5 @@
 package main.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import estructuras.arbol.Nodo;
 
 public class Minimax {
@@ -15,7 +12,6 @@ public class Minimax {
         this.jugador = jugador;
     }
 
-    // Nodo que representa un estado del juego en el árbol
     // Construye el árbol de estados recursivamente
     private void construirArbol(Nodo nodo, boolean esMaximizador) {
         if (nodo.estado.revisarTablero() != null || nodo.estado.estaLleno()) {
