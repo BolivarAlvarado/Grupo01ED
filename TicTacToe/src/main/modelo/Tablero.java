@@ -106,5 +106,15 @@ public class Tablero {
 
         return false;
     }
+    
+        // Clona el tablero actual (copia profunda)
+    public Tablero clonar() {
+        Tablero copia = new Tablero();
+        for (int i = 0; i < SIZE; i++) {
+            // Copiar fila por fila para evitar referencias compartidas
+            System.arraycopy(this.tablero[i], 0, copia.tablero[i], 0, SIZE);
+        }
+        return copia;
+    }
 }
 
