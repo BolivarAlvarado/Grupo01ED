@@ -25,7 +25,6 @@
          <children>
             <Button fx:id="btnJvsJ" mnemonicParsing="false" onAction="#jugarVsJugador" styleClass="menu-button" text="Jugador vs Jugador" />
             <Button fx:id="btnJvsP" mnemonicParsing="false" onAction="#jugarVsPC" styleClass="menu-button" text="Jugador vs PC" />
-            <Button fx:id="btnPvsP" mnemonicParsing="false" onAction="#jugarPCvsPC" styleClass="menu-button" text="PC vs PC" />
          </children>
          <padding>
             <Insets top="15.0" />
